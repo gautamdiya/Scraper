@@ -16,10 +16,11 @@ import demo.wrappers.Wrappers;
 
 public class TestCases {
     ChromeDriver driver;
+    String url = "https://www.scrapethissite.com/pages/";
 
     /*
      * TODO: Write your tests here with testng @Test annotation. 
-     * Follow `testCase01` `testCase02`... format or what is provided in instructions
+     * Follow testCase01 testCase02... format or what is provided in instructions
      */
 
      
@@ -48,6 +49,35 @@ public class TestCases {
 
         driver.manage().window().maximize();
     }
+    @Test 
+    public void testCase01() throws Exception{
+     System.out.println("Started : TestCase01");
+     //navigating to the website 
+     Wrappers.navigateToWebsite(driver,url);
+     //selecting the page 
+     Wrappers.selectPage(driver,"Sandbox");
+     //Clicking on the desired heading
+     Wrappers.headingSelection(driver,"Hockey");
+     //printing the Teamname ,year, win %
+     Wrappers.teamData(driver);
+     System.out.println("End : TestCase01");
+    }
+
+    @Test 
+    public void testCase02() throws Exception{
+        System.out.println("Started : TestCase02");
+     //navigating to the website 
+     Wrappers.navigateToWebsite(driver,url);
+     //selecting the page 
+     Wrappers.selectPage(driver,"Sandbox");
+     //Clicking on the desired heading
+     Wrappers.headingSelection(driver,"Oscar");
+     Wrappers.scrapeOscarData(driver);
+     Wrappers.verifyFile();
+     
+
+    }
+
 
     @AfterTest
     public void endTest()
@@ -55,5 +85,5 @@ public class TestCases {
         driver.close();
         driver.quit();
 
-    }
+}
 }
